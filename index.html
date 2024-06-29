@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tic Tac Toe</title>
+	<link rel="icon" href="src/airplane.svg" type="image/svg+xml">
+	<link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+
+<table>
+	<tr>
+		<td class="borderRight borderBottom"></td>
+		<td class="borderRight borderBottom borderLeft"></td>
+		<td class="borderBottom borderLeft"></td>
+	</tr>
+	<tr>
+		<td class="borderTop borderRight borderBottom"></td>
+		<td class="borderTop borderRight borderBottom borderLeft"></td>
+		<td class="borderTop borderBottom borderLeft"></td>
+	</tr>
+	<tr>
+		<td class="borderTop borderRight"></td>
+		<td class="borderTop borderRight borderLeft"></td>
+		<td class="borderTop borderLeft"></td>
+	</tr>
+</table>
+
+<button onclick="resetBoard()">Reset</button>
+
+<script>
+
+	let gameState = 'playing';
+
+	let symbol = '<img src="src/x-lg.svg">';
+
+	for ( e of document.querySelectorAll( 'td' ) )
+	{
+		e.addEventListener(
+			'click',
+			function () {
+
+				// Set the symbol only if the cell is empty
+				if ( gameState === 'playing' && this.innerHTML === '' )
+				{
+					this.innerHTML = symbol;
+
+					// Check all possible combination for game over
+					setTimeout( () => {
+						check( 0, 1, 2 );
+						check( 3, 4, 5 );
+						check( 6, 7, 8 );
+
+						check( 0, 3, 6 );
+						check( 1, 4, 7 );
+						check( 2, 5, 8 );
+
+						check( 0, 4, 8 );
+						check( 2, 4, 6 );
+					}, 100 );
+
+					// Once the symbol is set, change it for the other player
+					if ( symbol === '<img src="src/x-lg.svg">' )
+					{
+						symbol = '<img src="src/circle.svg">';
+						document.querySelector( 'table' ).style.cursor = 'url( src/circle.svg ), auto';
+					}
+					else
+					{
+						symbol = '<img src="src/x-lg.svg">';
+						document.querySelector( 'table' ).style.cursor = 'url( src/x-lg.svg ), auto';
+					}
+				} // End of 'if'
+			} // End of function
+		); // End of 'addEventListener'
+	} // End of 'for' loop
+
+	function tdTxt( num )
+	{
+		return document.querySelectorAll( 'td' )[ num ].innerHTML;
+	}
+
+	function check( a, b, c )
+	{
+		if ( tdTxt( a ) !== '' && tdTxt( a ) === tdTxt( b ) && tdTxt( b ) === tdTxt( c ) )
+		{
+			let winner = 'X';
+
+			if ( symbol === '<img src="src/x-lg.svg">' )
+			{
+				winner = 'O';
+			}
+
+			alert( 'Congratulations! ' + winner + ' won this round.' );
+			gameState = 'over';
+		}
+	}
+
+	function resetBoard()
+	{
+		gameState = 'playing';
+		// Reset the board for a new game
+		for( e of document.querySelectorAll( 'td' ) )
+		{
+			e.innerHTML = '';
+		}
+	}
+
+</script>
+</body>
+</html>
