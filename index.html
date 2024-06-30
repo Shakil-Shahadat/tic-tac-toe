@@ -37,7 +37,7 @@
 
 	let symbol = '<img src="src/x-lg.svg">';
 
-	for ( e of document.querySelectorAll( 'td' ) )
+	for ( let e of document.querySelectorAll( 'td' ) )
 	{
 		e.addEventListener(
 			'click',
@@ -103,7 +103,7 @@
 	{
 		gameState = 'playing';
 		// Reset the board for a new game
-		for( e of document.querySelectorAll( 'td' ) )
+		for( let e of document.querySelectorAll( 'td' ) )
 		{
 			e.innerHTML = '';
 		}
