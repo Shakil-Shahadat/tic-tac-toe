@@ -96,6 +96,8 @@
 
 			alert( 'Congratulations! ' + winner + ' won this round.' );
 			gameState = 'over';
+
+			document.querySelector( 'table' ).style.cursor = 'auto';
 		}
 	}
 
@@ -106,6 +108,16 @@
 		for( let e of document.querySelectorAll( 'td' ) )
 		{
 			e.innerHTML = '';
+		}
+
+		// Set appropriate cursor
+		if ( symbol === '<img src="src/x-lg.svg">' )
+		{
+			document.querySelector( 'table' ).style.cursor = 'url( src/x-lg.svg ), auto';
+		}
+		else
+		{
+			document.querySelector( 'table' ).style.cursor = 'url( src/circle.svg ), auto';
 		}
 	}
 
