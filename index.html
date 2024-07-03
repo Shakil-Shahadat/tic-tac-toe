@@ -89,20 +89,27 @@
 		return document.querySelectorAll( 'td' )[ num ].innerHTML;
 	}
 
+	// A function that checks if the game has ended
 	function check( a, b, c )
 	{
-		if ( tdTxt( a ) !== '' && tdTxt( a ) === tdTxt( b ) && tdTxt( b ) === tdTxt( c ) )
+		// How the check works?
+		// The texts inside the cells has to be the same and can't be empty
+		if ( tdTxt( a ) === tdTxt( b ) && tdTxt( b ) === tdTxt( c ) && tdTxt( a ) !== '' )
 		{
-			let winner = 'X';
-
+			// Get the winner and show it
 			if ( symbol === '<img src="src/x-lg.svg">' )
 			{
-				winner = 'O';
+				alert( 'Congratulations! O won this round.' );
+			}
+			else
+			{
+				alert( 'Congratulations! X won this round.' );
 			}
 
-			alert( 'Congratulations! ' + winner + ' won this round.' );
+			// Change the game state to over
 			gameState = 'over';
 
+			// Change the cursor to normal cursor
 			document.querySelector( 'table' ).style.cursor = 'auto';
 		}
 	}
