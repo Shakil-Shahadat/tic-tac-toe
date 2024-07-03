@@ -37,7 +37,7 @@
 
 	let symbol = '<img src="src/x-lg.svg">'; // A variable to store the image of the symbol
 
-	// Add onclick event to all the cells of the table
+	// Add a click event to all the cells of the table
 	for ( let e of document.querySelectorAll( 'td' ) )
 	{
 		e.addEventListener(
@@ -114,9 +114,12 @@
 		}
 	}
 
+	// A function to reset the board for a new game
 	function resetBoard()
 	{
+		// Change the state of the game
 		gameState = 'playing';
+
 		// Reset the board for a new game
 		for( let e of document.querySelectorAll( 'td' ) )
 		{
