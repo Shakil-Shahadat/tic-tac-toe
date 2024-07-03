@@ -33,19 +33,22 @@
 
 	'use strict';
 
-	let gameState = 'playing';
+	let gameState = 'playing'; // A variable to keep the status of the game
 
-	let symbol = '<img src="src/x-lg.svg">';
+	let symbol = '<img src="src/x-lg.svg">'; // A variable to store the image of the symbol
 
+	// Add onclick event to all the cells of the table
 	for ( let e of document.querySelectorAll( 'td' ) )
 	{
 		e.addEventListener(
 			'click',
 			function () {
 
-				// Set the symbol only if the cell is empty
+				// Set the symbol only if the the status of the
+				// game is playing and the cell is empty
 				if ( gameState === 'playing' && this.innerHTML === '' )
 				{
+					// Set the symbol
 					this.innerHTML = symbol;
 
 					// Check all possible combination for game over
@@ -61,8 +64,10 @@
 						check( 0, 4, 8 );
 						check( 2, 4, 6 );
 					}, 50 );
+					// Without the time delay, the symbol is set after the alert
 
-					// Once the symbol is set, change it for the other player
+					// Once the symbol is set, toggle the symbol
+					// and the mouse cursor for the other player
 					if ( symbol === '<img src="src/x-lg.svg">' )
 					{
 						symbol = '<img src="src/circle.svg">';
@@ -78,6 +83,7 @@
 		); // End of 'addEventListener'
 	} // End of 'for' loop
 
+	// A helper function that returns the text of a cell
 	function tdTxt( num )
 	{
 		return document.querySelectorAll( 'td' )[ num ].innerHTML;
