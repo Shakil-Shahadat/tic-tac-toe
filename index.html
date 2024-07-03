@@ -96,6 +96,12 @@
 		// The texts inside the cells has to be the same and can't be empty
 		if ( tdTxt( a ) === tdTxt( b ) && tdTxt( b ) === tdTxt( c ) && tdTxt( a ) !== '' )
 		{
+			// Change the color of the winning cells to red
+			let svgColor = 'invert(25%) sepia(95%) saturate(6810%) hue-rotate(358deg) brightness(94%) contrast(124%)';
+			document.querySelectorAll( 'td' )[ a ].querySelector( 'img' ).style.filter = svgColor;
+			document.querySelectorAll( 'td' )[ b ].querySelector( 'img' ).style.filter = svgColor;
+			document.querySelectorAll( 'td' )[ c ].querySelector( 'img' ).style.filter = svgColor;
+
 			// Get the winner and show it
 			if ( symbol === '<img src="src/x-lg.svg">' )
 			{
