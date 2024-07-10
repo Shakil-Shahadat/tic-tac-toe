@@ -51,21 +51,6 @@
 					// Set the symbol
 					this.innerHTML = symbol;
 
-					// Check all possible combination for game over
-					setTimeout( () => {
-						check( 0, 1, 2 );
-						check( 3, 4, 5 );
-						check( 6, 7, 8 );
-
-						check( 0, 3, 6 );
-						check( 1, 4, 7 );
-						check( 2, 5, 8 );
-
-						check( 0, 4, 8 );
-						check( 2, 4, 6 );
-					}, 50 );
-					// Without the time delay, the symbol is set after the alert
-
 					// Once the symbol is set, toggle the symbol
 					// and the mouse cursor for the other player
 					if ( symbol === '<img src="src/x-lg.svg">' )
@@ -78,6 +63,18 @@
 						symbol = '<img src="src/x-lg.svg">';
 						document.querySelector( 'table' ).style.cursor = 'url( src/x-lg.svg ), auto';
 					}
+
+					// Check all possible combination for game over
+					check( 0, 1, 2 );
+					check( 3, 4, 5 );
+					check( 6, 7, 8 );
+
+					check( 0, 3, 6 );
+					check( 1, 4, 7 );
+					check( 2, 5, 8 );
+
+					check( 0, 4, 8 );
+					check( 2, 4, 6 );
 				} // End of 'if'
 			} // End of function
 		); // End of 'addEventListener'
@@ -104,21 +101,25 @@
 			// Source: https://stackoverflow.com/questions/22252472/how-can-i-change-the-color-of-an-svg-element
 			// Get filter color https://codepen.io/sosuke/pen/Pjoqqp
 
-			// Get the winner and show it
-			if ( symbol === '<img src="src/x-lg.svg">' )
-			{
-				alert( 'Congratulations! O won this round.' );
-			}
-			else
-			{
-				alert( 'Congratulations! X won this round.' );
-			}
+			// Change the cursor to normal cursor
+			document.querySelector( 'table' ).style.cursor = 'auto';
 
 			// Change the game state to over
 			gameState = 'over';
 
-			// Change the cursor to normal cursor
-			document.querySelector( 'table' ).style.cursor = 'auto';
+			// Get the winner and show it
+			setTimeout( () => {
+				if ( symbol === '<img src="src/x-lg.svg">' )
+				{
+					alert( 'Congratulations! O won this round.' );
+				}
+				else
+				{
+					alert( 'Congratulations! X won this round.' );
+				}
+			}, 50 );
+			// Without the time delay, the color change and the cursor change
+			// happens after the alert
 		}
 	}
 
