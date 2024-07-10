@@ -75,6 +75,33 @@
 
 					check( 0, 4, 8 );
 					check( 2, 4, 6 );
+
+					// If all the cells are filled, enter draw mode
+					let cellState = 0;
+					for ( let e2 of document.querySelectorAll( 'td' ) )
+					{
+						if ( e2.innerHTML === '' )
+						{
+							cellState = 1;
+						}
+					}
+					// if at least one of the cells is found empty, it'll turn
+					// cellState to 1, if not, it'll remain 0, game is over
+					// without a winner. Also check if it's already over.
+					if ( cellState === 0 && gameState !== 'over' )
+					{
+						// Change the game state to draw
+						gameState = 'draw';
+
+						// Change the cursor to normal cursor
+						document.querySelector( 'table' ).style.cursor = 'auto';
+
+						setTimeout( () => {
+							alert( 'The game is a draw. Please restart the game.' );
+						}, 50 );
+						// Without the time delay, the setting of the symbol and
+						// changing of the cursor happen after the alert
+					}
 				} // End of 'if'
 			} // End of function
 		); // End of 'addEventListener'
@@ -119,7 +146,7 @@
 				}
 			}, 50 );
 			// Without the time delay, the color change and the cursor change
-			// happens after the alert
+			// happen after the alert
 		}
 	}
 
