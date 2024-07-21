@@ -37,5 +37,16 @@ button
 	display: block;
 	width: 50px;
 	margin: auto;
+	margin-top: 30px;
+}
+.result
+{
+	width: 170px;
+	margin: auto;
 	margin-top: 50px;
+}
+.result > span
+{
+	border: 1px solid lightgray;
+	padding: 5px;
 }

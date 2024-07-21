@@ -27,6 +27,12 @@
 	</tr>
 </table>
 
+<div class="result">
+	<span>X: <span class="xResult">0</span></span>
+	<span>O: <span class="oResult">0</span></span>
+	<span>Draw: <span class="draw">0</span></span>
+</div>
+
 <button onclick="resetBoard()">Reset</button>
 
 <script>
@@ -96,6 +102,9 @@
 						// Change the cursor to normal cursor
 						document.querySelector( 'table' ).style.cursor = 'auto';
 
+						// Increase draw stat
+						document.querySelector( '.draw' ).innerText = parseInt( document.querySelector( '.draw' ).innerText ) + 1;
+
 						setTimeout( () => {
 							alert( 'The game is a draw. Please restart the game.' );
 						}, 50 );
@@ -134,16 +143,26 @@
 			// Change the game state to over
 			gameState = 'over';
 
+			// Get the winner and increase his stat
+			let alertMsg = ''; // A variable to store the message for winner
+			if ( symbol === '<img src="src/x-lg.svg">' )
+			{
+				// Increase stat for O
+				document.querySelector( '.oResult' ).innerText = parseInt( document.querySelector( '.oResult' ).innerText ) + 1;
+
+				alertMsg = 'Congratulations! O won this round.';
+			}
+			else
+			{
+				// Increase stat for X
+				document.querySelector( '.xResult' ).innerText = parseInt( document.querySelector( '.xResult' ).innerText ) + 1;
+
+				alertMsg = 'Congratulations! X won this round.';
+			}
+
 			// Get the winner and show it
 			setTimeout( () => {
-				if ( symbol === '<img src="src/x-lg.svg">' )
-				{
-					alert( 'Congratulations! O won this round.' );
-				}
-				else
-				{
-					alert( 'Congratulations! X won this round.' );
-				}
+				alert( alertMsg );
 			}, 50 );
 			// Without the time delay, the color change and the cursor change
 			// happen after the alert
