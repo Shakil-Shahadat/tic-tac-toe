@@ -32,13 +32,6 @@ td > img
 {
 	border-left: 1px solid gray;
 }
-button
-{
-	display: block;
-	width: 50px;
-	margin: auto;
-	margin-top: 30px;
-}
 .result
 {
 	width: 170px;
