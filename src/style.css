@@ -35,8 +35,7 @@ td > img
 .result
 {
 	width: 170px;
-	margin: auto;
-	margin-top: 50px;
+	margin: 50px auto;
 }
 .result > span
 {
